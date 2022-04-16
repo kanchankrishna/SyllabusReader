@@ -49,10 +49,11 @@ print(pytesseract.image_to_string(Image.open(image_name), config=custom_oem_psm_
 output_string = pytesseract.image_to_string(Image.open(image_name), config=custom_oem_psm_config)
 #print(output_string)
 #Put string into a txt file
-text_file = open("sample.txt", "w")
-n = text_file.write(output_string)
-text_file.close()
-
+#text_file = open("sample.txt", "w")
+#n = text_file.write(output_string)
+#text_file.close()
+output_string = output_string.strip().split('\n')
+#output string is like an array of string for each line
 
 #Create a list of key words to look for
 #key_words = ["Assignment", "Homework", "Exam", "Date", "Test", "Quiz", "Midterm", "Due"]
@@ -91,7 +92,8 @@ for i in range(1, (len(lines))):
     line = lines[i]
     list_of_line_words = line.split(' ')
     length_list_of_line_words = len(list_of_line_words)
-    last_ele_date = list_of_line_words[length_list_of_line_words - 1]
+    last_ele_date = list_of_line_words[-1]
+    #could use -1 for last index
     last_ele_date = last_ele_date.strip('\n')
     #print(last_ele_date, "potential new string")
     # initializing format
@@ -124,7 +126,7 @@ for i in range(1, (len(lines))):
     event = {
   'summary': assignment_type,
   'location': '800 Howard St., San Francisco, CA 94103',
-  'description': 'A chance to hear more about Google\'s developer products.',
+  #'description': 'A chance to hear more about Google\'s developer products.',
   'start': {
     'dateTime': var3,
     'timeZone': 'America/Los_Angeles',
@@ -134,9 +136,9 @@ for i in range(1, (len(lines))):
     'dateTime': var3,
     'timeZone': 'America/Los_Angeles',
   },
-  'recurrence': [
-    'RRULE:FREQ=DAILY;COUNT=2'
-  ],
+  #'recurrence': [
+    #'RRULE:FREQ=DAILY;COUNT=2'
+  #],
   'attendees': [
     {'email': 'lpage@example.com'},
     {'email': 'sbrin@example.com'},
