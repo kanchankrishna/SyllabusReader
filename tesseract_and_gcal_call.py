@@ -12,7 +12,6 @@ pytesseract.pytesseract.tesseract_cmd = r'/usr/local/Cellar/tesseract/5.0.1/bin/
 
 custom_oem_psm_config = r'--psm 3'
 
-#Get user input (their file path of the image) from the command line
 image_name = "nowusethis.jpg"
 
 # Simple image to string using command line arguments
